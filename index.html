@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Harlem Shake</title>
+	<style>
+		*,
+		*:before,
+		*:after {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			width: 100%;
+			background-color: bisque;
+			margin: 0px auto;
+			padding: 50px 0;
+			min-height: 100vh;
+		}
+
+		.content {
+			width: 1000px;
+			height: 1000px;
+			margin: 0px auto;
+			border: 1px red solid;
+			position: relative;
+		}
+
+		@keyframes bgc {
+			10% {
+				background-color: #c0c0c0;
+			}
+
+			20% {
+				background-color: #ffffff;
+			}
+
+			30% {
+				background-color: #ff00ff;
+			}
+
+			40% {
+				background-color: #ff0000;
+			}
+
+			50% {
+				background-color: #ffff00;
+			}
+
+			60% {
+				background-color: #808000;
+			}
+
+			70% {
+				background-color: #00ff00;
+			}
+
+			80% {
+				background-color: #00ffff;
+			}
+
+			90% {
+				background-color: #0000ff;
+			}
+
+			100% {
+				background-color: #000080;
+			}
+		}
+
+		.content:hover {
+			animation: bgc 2s infinite linear alternate;
+		}
+
+		.content:hover .circle {
+			animation: pulse 0.5s infinite linear alternate;
+		}
+
+		.content:hover .square {
+			animation: dance 0.5s infinite linear alternate;
+		}
+
+		.content:hover .top {
+			animation: move 0.8s infinite linear normal;
+		}
+
+		/* Анимация человечка */
+		.content:hover .sprite-image {
+			animation-name: play;
+			animation-timing-function: steps(1, start);
+			animation-duration: 2s;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+			display: block;
+		}
+
+		.center-square {
+			width: 200px;
+			height: 200px;
+			border: 2px red solid;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: rotate(45deg);
+			transform: translate(-50%, -50%);
+			animation: rotate 1s infinite ease-in;
+		}
+
+		/* Кадры для квадрата в центре */
+		@keyframes rotate {
+			0% {
+				transform: translate(-50%, -50%) rotate(45deg);
+			}
+
+			50% {
+				transform: translate(-50%, -50%) rotate(135deg);
+			}
+
+			100% {
+				transform: translate(-50%, -50%) rotate(225deg);
+			}
+		}
+
+		.circle {
+			display: inline-block;
+			overflow: hidden;
+			width: 200px;
+			height: 200px;
+			border: 2px orange solid;
+			border-radius: 50%;
+			background-color: red;
+		}
+
+		.circle img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.top-left {
+			position: absolute;
+			top: 10%;
+			left: 10%;
+			background-color: #84cd1b;
+		}
+
+		.bot-right {
+			position: absolute;
+			bottom: 10%;
+			right: 10%;
+		}
+
+		/* Кадры для картинок с лицами */
+		@keyframes pulse {
+			from {
+				transform: scale(0.5, 0.5);
+				background-color: red;
+			}
+
+			50% {
+				transform: scale(1, 1);
+				background-color: green;
+			}
+
+			to {
+				transform: scale(1.5, 1.5);
+				background-color: blue;
+			}
+		}
+
+		.square {
+			width: 100px;
+			height: 100px;
+			border: 1px red solid;
+		}
+
+		.left {
+			position: absolute;
+			top: 50%;
+			left: 100px;
+			transform: translate(0, -50%);
+		}
+
+		.right {
+			position: absolute;
+			top: 50%;
+			right: 100px;
+			transform: translate(0, -50%);
+		}
+
+		/* Кадры для квадратов слева справа */
+		@keyframes dance {
+			from {
+				transform: translate(-50%, -50%) matrix(1.2, 0, -0.5, 1.2, 50, 0);
+				background-color: blueviolet;
+			}
+
+			to {
+				transform: translate(-50%, -50%) matrix(1.2, 0, 0.5, 1.2, 50, 0);
+
+				background-color: blue;
+			}
+		}
+
+		.circle_small {
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			background-color: red;
+		}
+
+		.top {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+		}
+
+		/* Кадры перемещения красного круга */
+		@keyframes move {
+			from {
+				transform: translate(0px, 0px);
+			}
+
+			25% {
+				transform: translate(930px, 0px);
+				background-color: gold;
+			}
+
+			50% {
+				transform: translate(930px, 930px);
+				background-color: darkmagenta;
+			}
+
+			75% {
+				transform: translate(0px, 930px);
+				background-color: green;
+			}
+
+			to {
+				transform: translate(0px, 0px);
+				background-color: red;
+			}
+		}
+
+		/* Позиционирование и картинка человечка */
+		.sprite-image {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			height: 125px;
+			width: 84px;
+			background: url(https://raw.githubusercontent.com/Delekus/animations/main/img/pngwing.com.png) 0px 0px;
+			background-repeat: no-repeat;
+			display: none;
+		}
+
+		/* Кадры танца человечка */
+		@keyframes play {
+			from {
+				background-position: 0px 0;
+			}
+
+			8% {
+				background-position: -83px 0;
+			}
+
+			16% {
+				background-position: -166px 0;
+			}
+
+			24% {
+				background-position: -249px 0;
+			}
+
+			32% {
+				background-position: -332px 0;
+			}
+
+			40% {
+				background-position: 0px -118px;
+			}
+
+			48% {
+				background-position: -83px -118px;
+			}
+
+			56% {
+				background-position: -166px -118px;
+			}
+
+			64% {
+				background-position: -249px -118px;
+			}
+
+			72% {
+				background-position: -332px -118px;
+			}
+
+			80% {
+				background-position: 0px -236px;
+			}
+
+			88% {
+				background-position: -83px -236px;
+			}
+
+			96% {
+				background-position: -166px -236px;
+			}
+
+			to {
+				background-position: -249px -236px;
+			}
+
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="content">
+			<div class="center-square">
+			</div>
+			<div class="circle top-left">
+				<img src="img/meme.png" alt="">
+			</div>
+			<div class="circle bot-right">
+				<img src="img/pepe.png" alt="">
+			</div>
+			<div class="square left"></div>
+			<div class="square right"></div>
+			<div class="circle_small top">
+			</div>
+			<div class="sprite-container">
+				<div class="sprite-image"></div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+
+</html>
